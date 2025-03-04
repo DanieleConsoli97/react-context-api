@@ -1,0 +1,19 @@
+ *{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+ }
+nav{
+  text-align: center;
+  background-color:lightgreen;
+  padding: 30px;
+}
+li{
+  list-style: none;
+}
+.active{
+  color: red;
+}
+a{
+  text-decoration: none;
+}
