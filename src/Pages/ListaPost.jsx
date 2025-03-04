@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import {useGlobalContext} from "../contexts/GlobalContext"
 const ListaPost = () => {
-    const [posts, setPosts] = useState([]);
-    function fetchPost() {
-        // fetch fa una chiamata al server tra partentesi  in questo caso al nostro server node
-        fetch("http://localhost:3000/posts/")
-            // la prima concatenazione gestisce la richiesta e ci da una risposta che convenzionalmente viene nominata
-            // =>response.json converte la risposta in json
-            .then((res) => res.json())
-            //NOTE - diamo a setPosts il valore della response
-            .then(setPosts)
-            .catch((error) => {
-                console.error("Errore:", error);
-            });
-    }
-    useEffect(fetchPost, []);
+    const {posts,fetchPost} = useGlobalContext()
+    useEffect(() =>{
+        fetchPost()
+        console.log(posts)
+    }, []);
     return (
         <>
             {posts.map((post) => {

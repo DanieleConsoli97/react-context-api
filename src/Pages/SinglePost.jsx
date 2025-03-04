@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const SinglePost = () => {
     const { id } = useParams()
-    const [posts, setPosts] = useState({});
+    const [SingPosts, SingSetPosts] = useState({});
     function fetchPost() {
         // fetch fa una chiamata al server tra partentesi  in questo caso al nostro server node
         fetch(`http://localhost:3000/posts/${id}`)
@@ -11,13 +11,13 @@ const SinglePost = () => {
             // =>response.json converte la risposta in json
             .then((res) => res.json())
             //NOTE - diamo a setPosts il valore della response
-            .then(setPosts)
+            .then(SingSetPosts)
             .catch((error) => {
                 console.error("Errore:", error);
             });
     }
     useEffect(fetchPost, [])
-    const { title, image, content, tags } = posts
+    const { title, image, content, tags } = SingPosts
     return (
         <>
             <ul key={id}>
