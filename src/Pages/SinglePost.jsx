@@ -1,22 +1,11 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
+import {useGlobalContext} from "../contexts/GlobalContext"
 const SinglePost = () => {
     const { id } = useParams()
-    const [SingPosts, SingSetPosts] = useState({});
-    function fetchPost() {
-        // fetch fa una chiamata al server tra partentesi  in questo caso al nostro server node
-        fetch(`http://localhost:3000/posts/${id}`)
-            // la prima concatenazione gestisce la richiesta e ci da una risposta che convenzionalmente viene nominata
-            // =>response.json converte la risposta in json
-            .then((res) => res.json())
-            //NOTE - diamo a setPosts il valore della response
-            .then(SingSetPosts)
-            .catch((error) => {
-                console.error("Errore:", error);
-            });
-    }
-    useEffect(fetchPost, [])
+    const {SinglePost,SingPosts} = useGlobalContext ()
+    
+    useEffect(SinglePost (id), [])
     const { title, image, content, tags } = SingPosts
     return (
         <>
